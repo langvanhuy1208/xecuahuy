@@ -2,7 +2,7 @@
 # Tạo workspace & thêm package
 
 cd ~ && mkdir -p xecuahuy/src && cp -r ~/Downloads/xecuahuy ~/xecuahuy_ws/src/
-Cài dependency
+# Cài dependency
 
 cd ~/xecuahuy_ws && rosdep install --from-paths src --ignore-src -r -y
 
