@@ -1,0 +1,17 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    mecanum_drive_controller:
+      type: mecanum_drive_controller/MecanumDriveController
+
+mecanum_drive_controller:
+  ros__parameters:
+    reference_timeout: 0.1
+    front_left_wheel_name: front_left_wheel_joint
+    front_right_wheel_name: front_right_wheel_joint
+    rear_left_wheel_name: rear_left_wheel_joint
+    rear_right_wheel_name: rear_right_wheel_joint
+    # Các thông số vật lý xe (điều chỉnh cho khớp với thực tế xe của bạn)
+    wheel_separation_x: 0.13
+    wheel_separation_y: 0.20
+    wheel_radius: 0.03
