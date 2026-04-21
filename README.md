@@ -1,19 +1,23 @@
-# xecuahuy
-# Tạo workspace & thêm package
+# Tạo cấu trúc thư mục workspace
+mkdir -p ~/xecuahuy_ws/src
 
-cd ~ && mkdir -p xecuahuy/src && cp -r ~/Downloads/xecuahuy ~/xecuahuy_ws/src/
-# Cài dependency
+# Sao chép mã nguồn từ thư mục Downloads vào workspace
+cp -r ~/Downloads/xecuahuy ~/xecuahuy_ws/src/
 
-cd ~/xecuahuy_ws && rosdep install --from-paths src --ignore-src -r -y
+# Cài đặt các thành phần phụ thuộc (Dependencies)
+cd ~/xecuahuy_ws
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
 
-# chay gazebo
-
-killall -9 gzserver gzclient;
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/xecuahuy_ws/src;
-cd ~/xecuahuy_ws;
-colcon build --packages-select xecuahuy;
-source install/setup.bash;
+# Biên dịch và Khởi chạy mô phỏng Gazebo
+killall -9 gzserver gzclient
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/xecuahuy_ws/src
+cd ~/xecuahuy_ws
+colcon build --packages-select xecuahuy
+source install/setup.bash
 ros2 launch xecuahuy full_system.launch.py
 
-# chay teleop_nope
-cd ~/xecuahuy_ws && source install/setup.bash && ros2 run xecuahuy teleop_node.py
+# Chạy nút điều khiển bằng bàn phím (Teleop)
+cd ~/xecuahuy_ws
+source install/setup.bash
+ros2 run xecuahuy teleop_node.py
